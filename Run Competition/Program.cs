@@ -16,29 +16,40 @@ namespace Run_Competition
             // Looping
             while (true)
             {
-                // Keluarkan pertanyaan
-                Console.WriteLine("Berapa Lama Berolahraga ?");
-
-                // Minta inout dari user 
-                input = Console.ReadLine();
-
-                // Menambahkan inputny
-                total = total + Int32.Parse(input);                                
-                                 
-                // Keluar bila user input "quit"
-                if (input == "quit")
+                try
                 {
-                    break;
+                    // Keluarkan pertanyaan
+                    Console.WriteLine("Berapa Lama Berolahraga ?");
+
+                    // Minta inout dari user 
+                    input = Console.ReadLine();
+
+                    // Keluar bila user input "quit"
+                    if (input.ToLower() == "quit")
+                    {
+                        break;
+                    }
+
+                    //jika input dari user
+                    if (Int32.Parse(input) < 0)
+                    {
+                        Console.WriteLine("Coba Lagi Masukin yang benar");
+                        continue;
+                    }
+
+                    // Menambahkan inputny
+                    total = total + Int32.Parse(input);
+
+                    // Keluar inputnya
+                    //Console.WriteLine("Sekarang anda berolahraga sebanyak " + input + " menit. ");
+                    Console.WriteLine("Selamat anda telah berolahraga selama " + total + " menit. ");
                 }
-
-                // Keluar inputnya
-                Console.WriteLine("anda berolahraga sebanyak " + input + " menit. ");
                 
+                catch (FormatException)
+                {
+                    Console.WriteLine("Harap Masukkan nomor");
+                }
             }
-
-
-        }
-
-       
+        }       
     }
 }
